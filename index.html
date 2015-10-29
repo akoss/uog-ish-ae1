@@ -2,60 +2,71 @@
 <html>
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<link rel="stylesheet" type="text/css" href="calculator.css">
 		<script src="jquery-2.1.4.min.js"></script>
 		<script src="math.min.js"></script>
 		<script src="calculator.js"></script>
-		<title>Calculator - Akos Szente - 2094613</title>
 	</head>
 
 	<body>
-		<div class="calculator">
-			<div class="top">
-				<div id="defaultScreen" class="screen"></div>
-				<div id="defaultResult" class="result fresh"></div>
-			</div>
-			
-			<div class="keypad">
-				<div id="buttonmplus" class="button function memory">m+</div>
-				<div id="buttonmr" class="button function memory">mr</div>
-				<div id="buttonmclear" class="button function memory">mc</div>
-				<div id="buttonpi" class="button number">π</div>
-				<div id="buttonans" class="button number ">ANS</div>
-				<div id="buttonbackspace" class="button backspace">⌫</div>
-				<div id="buttonclear" class="button clear rightmost">C</div>
-				<div id="buttonsquared" class="button function">x&sup2;</div>
-				<div id="buttonthird" class="button function">x&sup3;</div>
-				<div id="buttonnth" class="button function">x&#8319;</div>
-				<div id="buttonseven" class="number button">7</div>
-				<div id="buttoneight" class="number button">8</div>
-				<div id="buttonnine" class="number button">9</div>
-				<div id="buttondivide" class="operator button rightmost">÷</div>
-				<div id="buttonreciprocal" class="button function">x&#8315;&#185;</div>
-				<div id="buttonroot" class="button function">√x</div>
-				<div id="buttonln" class="button function">log (</div>
-				<div id="buttonlnbase" class="button function">base</div>
-				<div id="buttonfour" class="number button">4</div>
-				<div id="buttonfive" class="number button">5</div>
-				<div id="buttonsix" class="number button">6</div>
-				<div id="buttontimes" class="operator button rightmost">×</div>
-				<div id="buttonfactorial" class="button function">!</div>
-				<div id="buttonparleft" class="button function">(</div>
-				<div id="buttonparright" class="button function">)</div>
-				<div id="buttonone" class="number button">1</div>
-				<div id="buttontwo" class="number button">2</div>
-				<div id="buttonthree" class="number button">3</div>
-				<div id="buttonplus" class="operator button rightmost">+</div>
-				<div id="buttonsin" class="button function">sin (</div>
-				<div id="buttoncos" class="button function">cos (</div>
-				<div id="buttontan" class="button function">tan (</div>
-				<div id="buttonzero" class="number button">0</div>
-				<div id="buttonpoint" class="dot button">.</div>
-				<div id="buttoneq" class="equal button">=</div>
-				<div id="buttonminus" class="operator button rightmost">-</div>
-			</div>
-		</div>
+		<table class="main-table">
+			<tr>
+				<td class="survey-instructions">
+					
+					<button type="button" class="beginbutton">Begin Survey</button>
+				</td>
+				<td class="separator">
+				</td>
+				<td>
+					<div id="calculator-container">
+						<div id="calculator" class="calculator">
+							<div class="top">
+								<div id="defaultScreen" class="screen"></div>
+								<div id="defaultResult" class="result fresh"></div>
+							</div>
+							
+							<div class="keypad">
+								<div id="buttonmplus" class="button function memory firstrow">m+</div>
+								<div id="buttonmr" class="button function memory firstrow">mr</div>
+								<div id="buttonmclear" class="button function memory firstrow">mc</div>
+								<div id="buttonpi" class="button number firstrow">π</div>
+								<div id="buttonans" class="button number firstrow">ANS</div>
+								<div id="buttonbackspace" class="button backspace firstrow">⌫</div>
+								<div id="buttonclear" class="button clear rightmost firstrow">C</div>
+								<div id="buttonsquared" class="button function">x&sup2;</div>
+								<div id="buttonthird" class="button function">x&sup3;</div>
+								<div id="buttonnth" class="button function">x&#8319;</div>
+								<div id="buttonseven" class="number button">7</div>
+								<div id="buttoneight" class="number button">8</div>
+								<div id="buttonnine" class="number button">9</div>
+								<div id="buttondivide" class="operator button rightmost">÷</div>
+								<div id="buttonreciprocal" class="button function">x&#8315;&#185;</div>
+								<div id="buttonroot" class="button function">√x</div>
+								<div id="buttonln" class="button function">log (</div>
+								<div id="buttonlnbase" class="button function">base</div>
+								<div id="buttonfour" class="number button">4</div>
+								<div id="buttonfive" class="number button">5</div>
+								<div id="buttonsix" class="number button">6</div>
+								<div id="buttontimes" class="operator button rightmost">×</div>
+								<div id="buttonfactorial" class="button function">!</div>
+								<div id="buttonparleft" class="button function">(</div>
+								<div id="buttonparright" class="button function">)</div>
+								<div id="buttonone" class="number button">1</div>
+								<div id="buttontwo" class="number button">2</div>
+								<div id="buttonthree" class="number button">3</div>
+								<div id="buttonplus" class="operator button rightmost">+</div>
+								<div id="buttonsin" class="button function">sin (</div>
+								<div id="buttoncos" class="button function">cos (</div>
+								<div id="buttontan" class="button function">tan (</div>
+								<div id="buttonzero" class="number button">0</div>
+								<div id="buttonpoint" class="dot button">.</div>
+								<div id="buttoneq" class="equal button">=</div>
+								<div id="buttonminus" class="operator button rightmost">-</div>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
 	</body>
-
 </html>
 

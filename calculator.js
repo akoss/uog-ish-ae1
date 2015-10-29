@@ -1,5 +1,22 @@
 var mem = 0; 
 var ans = 0;
+var baseDate = 0;
+
+/* This is from http://stackoverflow.com/questions/19491336/get-url-parameter-jquery */ 
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
 
 function memread(){
 	return mem; 
@@ -89,8 +106,8 @@ function parseString(what){
 
 function equals(what){
 	try {
-		console.log(what);
-		console.log(parseString(what));
+		//console.log(what);
+		//console.log(parseString(what));
 		ans = math.eval(parseString(what));
 		$('#buttonans').css('visibility','visible');
 		resetLog();
@@ -110,6 +127,14 @@ function resetLog(){
 }
 
 $(document).ready(function() {
+	var stylesheetName = getUrlParameter('css');
+	if(!stylesheetName){
+		stylesheetName = "calculator.css";
+	}
+	$("head").append($("<link rel='stylesheet' type='text/css' href='"+stylesheetName+"'>")); 
+	$("head").append($("<title>Calculator - Using " + stylesheetName + " - Akos Szente - 2094613</title>")); 
+
+
 	$('#buttonmclear').css('visibility','hidden');
 	$('#buttonmr').css('visibility','hidden');
 	$('#buttonans').css('visibility','hidden');
@@ -235,6 +260,15 @@ $(document).ready(function() {
 		$('#buttonlnbase').css('visibility','hidden');
 	});
 
+	$( '#calculator' ).click(function( event ) {
+		   var parentOffset = $(this).parent().offset(); 
+   			//or $(this).offset(); if you really just want the current element's offset
+   			var relX = event.pageX - parentOffset.left;
+   			var relY = event.pageY - parentOffset.top;
+
+
+	  		console.log( "x=" + relX + ";y=" + relY );
+	});
 
 
 });

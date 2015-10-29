@@ -15,8 +15,8 @@ html {
 }
 
 .calculator {
-	width: 535px;
-	height: 422px;
+	width: 662px;
+	height: 460px;
 	
 	margin-left: auto;
 	margin-right: auto;
@@ -110,7 +110,6 @@ html {
 	position: relative;
 
 	display:inline;
-	width: 50px;
 	font: 23px Helvetica, sans-serif;
 	font-weight: lighter;
 
@@ -128,8 +127,8 @@ html {
 
 	
 	
-	width: 66px;
-	height: 45px;
+	width: 84px;
+	height: 53px;
 	
 	/*border-radius: 3px;*/
 	/*box-shadow: 0px 4px rgba(0, 0, 0, 0.2);*/
@@ -137,7 +136,7 @@ html {
 	margin: 0 7px 8px 0;
 	
 	background: #C2E79A;
-	line-height: 45px;
+	line-height: 53px;
 	text-align: center;
 	
 	transition: all 0.1s ease;
@@ -145,7 +144,8 @@ html {
 	cursor: default;
 }
 
-/* Some hover effects */
+/* The idea of using box-shadow for depress imitation is from StackOverflow, but I can no longer find the link. */ 
+
 .keypad :hover {
 	background: #92C060;
 	box-shadow: 0px 4px #284D00;
@@ -157,10 +157,9 @@ html {
 	color: #ffffff;
 }
 
-/* The idea for this is from StackOverflow, but I can no longer find the link. 
 
 .keypad :active {
-	box-shadow: 0px 0px #6b54d3;
-	top: 4px;
+	background: #92C060;
+	box-shadow: 0px 4px #284D00;
 }
 
