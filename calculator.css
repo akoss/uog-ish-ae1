@@ -1,0 +1,156 @@
+* {
+	box-sizing: border-box;
+}
+
+/* A nice BG gradient */
+html {
+	height: 100%;
+	background-size: cover;
+	background: radial-gradient(circle, rgba(255,255,255,0.3), rgba(100,100,100,0.8));
+}
+
+.calculator {
+	width: 535px;
+	height: 430px;
+	
+	margin-top: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 15px 15px 15px 15px;
+	
+	background: linear-gradient(#699A33, #699A33);
+	box-shadow: 0px 0px rgba(0,0,0,1), 0px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.top {
+	margin-bottom: 20px;
+}
+
+.screen {
+	height: 80px;
+	width: 100%;
+	
+	padding: 0, 10px;
+	
+	background: rgba(0, 0, 0, 0.5);
+	/*border-radius: 3px; */
+	/*box-shadow: inset 0px 4px rgba(0, 0, 0, 0.2);*/
+	
+	font-size: 30px;
+	word-break: break-all;
+	line-height: 40px;
+	color: white;
+	text-align: right;
+	letter-spacing: 2px;
+	font-family: monospace; 
+}
+
+.result {
+    border-top: 1px solid #9dd2ea;
+	height: 40px;
+	width: 100%;
+	padding: 0, 10px;
+	background: rgba(0, 0, 0, 0.7);
+	
+	
+	font-family: monospace; 
+	font-size: 25px;
+	line-height: 40px;
+	color: white;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+	text-align: right;
+	letter-spacing: 1px;
+}
+
+.button.operator {
+	background: #457313;
+	color: white;
+	font-weight: lighter;
+}
+
+.button.equal {
+	background: #284D00;
+	color: white;
+	font-weight: lighter;
+}
+
+.button.function {
+	background: #457313;
+	color: white;
+	font-weight: lighter;
+}
+
+.button.clear {
+	background: #284D00;
+	color: white;
+	font-weight: lighter;
+}
+
+.button.backspace {
+	background: #284D00;
+	color: white;
+	font-weight: lighter;
+}
+
+.button.rightmost {
+	margin-right: 0;
+}
+
+.button	  {
+	float: left;
+	position: relative;
+
+	display:inline;
+	width: 50px;
+
+	font: 23px Helvetica, sans-serif;
+
+	/* 
+	 * The following lines are from StackOvervflow
+	 * http://stackoverflow.com/questions/3779534/how-to-disable-text-selection-with-css-or-js
+	 * There doesn't seem to be an elegant cross-browser way to disable text selection. 
+	 */
+	 -webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+	
+	
+	width: 66px;
+	height: 45px;
+	
+	/*border-radius: 3px;*/
+	/*box-shadow: 0px 4px rgba(0, 0, 0, 0.2);*/
+	
+	margin: 0 7px 8px 0;
+	
+	background: #C2E79A;
+	line-height: 45px;
+	text-align: center;
+	
+	/* Smoothing out hover and active states using css3 transitions */
+	transition: all 0.2s ease;
+	cursor: default;
+}
+
+/* Some hover effects */
+.keypad :hover {
+	background: #92C060;
+	box-shadow: 0px 4px #284D00;
+}
+
+.keypad .equal:hover {
+	background: #92C060;
+	box-shadow: 0px 4px #717a33;
+	color: #ffffff;
+}
+
+/* Simulating "pressed" effect on active state of the keys by removing the box-shadow and moving the keys down a bit */
+.keypad :active {
+	box-shadow: 0px 0px #6b54d3;
+	top: 4px;
+}
+
