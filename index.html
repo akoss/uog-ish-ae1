@@ -4,6 +4,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" type="text/css" href="calculator.css">
 		<script src="jquery-2.1.4.min.js"></script>
+		<script src="math.min.js"></script>
 		<script src="calculator.js"></script>
 		<title>Calculator - Akos Szente - 2094613</title>
 	</head>
@@ -11,28 +12,29 @@
 	<body>
 		<div class="calculator">
 			<div class="top">
-				<div class="screen"></div>
-				<div class="result">2342444</div>
+				<div id="defaultScreen" class="screen"></div>
+				<div id="defaultResult" class="result fresh"></div>
 			</div>
 			
 			<div class="keypad">
-				<div id="buttonmr" class="button function memory">mr</div>
 				<div id="buttonmplus" class="button function memory">m+</div>
-				<div id="buttonmclear" class="button function memoryclear">mc</div>
+				<div id="buttonmr" class="button function memory">mr</div>
+				<div id="buttonmclear" class="button function memory">mc</div>
 				<div id="buttonpi" class="button number">π</div>
+				<div id="buttonans" class="button number ">ANS</div>
 				<div id="buttonbackspace" class="button backspace">⌫</div>
-				<div id="buttonclear" class="button clear">C</div>
-				<div id="buttonplusminus" class="button function rightmost">&plusmn;</div>
-				<div id="buttonsquare" class="button function">x&sup2;</div>
+				<div id="buttonclear" class="button clear rightmost">C</div>
+				<div id="buttonsquared" class="button function">x&sup2;</div>
 				<div id="buttonthird" class="button function">x&sup3;</div>
 				<div id="buttonnth" class="button function">x&#8319;</div>
 				<div id="buttonseven" class="number button">7</div>
 				<div id="buttoneight" class="number button">8</div>
 				<div id="buttonnine" class="number button">9</div>
-				<div id="buttonplus" class="operator button rightmost">÷</div>
+				<div id="buttondivide" class="operator button rightmost">÷</div>
 				<div id="buttonreciprocal" class="button function">x&#8315;&#185;</div>
 				<div id="buttonroot" class="button function">√x</div>
-				<div id="buttonln" class="button function">ln&#8339;</div>
+				<div id="buttonln" class="button function">log (</div>
+				<div id="buttonlnbase" class="button function">base</div>
 				<div id="buttonfour" class="number button">4</div>
 				<div id="buttonfive" class="number button">5</div>
 				<div id="buttonsix" class="number button">6</div>

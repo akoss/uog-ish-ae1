@@ -2,13 +2,15 @@
 	box-sizing: border-box;
 }
 
-/* A nice BG gradient */
 html {
 	height: 100%;
 	background-size: cover;
 	background: radial-gradient(circle, rgba(255,255,255,0.3), rgba(100,100,100,0.8));
+
+	/* Flexbox formatting solution from StackOverflow
+	   http://stackoverflow.com/questions/8865458/how-to-align-text-vertically-center-in-div-with-css*/
 	display: flex;
-	justify-content: center; /* align horizontal */
+	justify-content: center;
 	align-items: center;
 }
 
@@ -57,9 +59,16 @@ html {
 	font-family: monospace; 
 	font-size: 25px;
 	line-height: 40px;
-	color: white;
 	text-align: right;
 	letter-spacing: 1.5px;
+}
+
+.fresh {
+	color: white;
+}
+
+.notfresh {
+	color: rgba(255,255,255,0.7);
 }
 
 .button.operator {
@@ -78,6 +87,11 @@ html {
 }
 
 .button.clear {
+	background: #284D00;
+	color: white;
+}
+
+.button.memory {
 	background: #284D00;
 	color: white;
 }
