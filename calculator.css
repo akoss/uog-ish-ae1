@@ -11,19 +11,19 @@ html {
 
 .calculator {
 	width: 535px;
-	height: 430px;
+	height: 422px;
 	
 	margin-top: 100px;
 	margin-left: auto;
 	margin-right: auto;
 	padding: 15px 15px 15px 15px;
 	
-	background: linear-gradient(#699A33, #699A33);
+	background: linear-gradient(#699A33, #609025);
 	box-shadow: 0px 0px rgba(0,0,0,1), 0px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 .top {
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 }
 
 .screen {
@@ -46,50 +46,43 @@ html {
 }
 
 .result {
-    border-top: 1px solid #9dd2ea;
+    border-top: 1px solid #699A33;
 	height: 40px;
 	width: 100%;
 	padding: 0, 10px;
 	background: rgba(0, 0, 0, 0.7);
 	
-	
 	font-family: monospace; 
 	font-size: 25px;
 	line-height: 40px;
 	color: white;
-	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 	text-align: right;
-	letter-spacing: 1px;
+	letter-spacing: 1.5px;
 }
 
 .button.operator {
 	background: #457313;
 	color: white;
-	font-weight: lighter;
 }
 
 .button.equal {
 	background: #284D00;
 	color: white;
-	font-weight: lighter;
 }
 
 .button.function {
 	background: #457313;
 	color: white;
-	font-weight: lighter;
 }
 
 .button.clear {
 	background: #284D00;
 	color: white;
-	font-weight: lighter;
 }
 
 .button.backspace {
 	background: #284D00;
 	color: white;
-	font-weight: lighter;
 }
 
 .button.rightmost {
@@ -102,8 +95,8 @@ html {
 
 	display:inline;
 	width: 50px;
-
 	font: 23px Helvetica, sans-serif;
+	font-weight: lighter;
 
 	/* 
 	 * The following lines are from StackOvervflow
@@ -131,8 +124,8 @@ html {
 	line-height: 45px;
 	text-align: center;
 	
-	/* Smoothing out hover and active states using css3 transitions */
-	transition: all 0.2s ease;
+	transition: all 0.1s ease;
+
 	cursor: default;
 }
 
@@ -148,7 +141,8 @@ html {
 	color: #ffffff;
 }
 
-/* Simulating "pressed" effect on active state of the keys by removing the box-shadow and moving the keys down a bit */
+/* The idea for this is from StackOverflow, but I can no longer find the link. 
+
 .keypad :active {
 	box-shadow: 0px 0px #6b54d3;
 	top: 4px;
