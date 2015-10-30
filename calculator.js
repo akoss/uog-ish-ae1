@@ -5,6 +5,7 @@ var startTime = null;
 var endTime = null;
 var storage = [];
 var backspaceUsage = [];
+var questionLog = [];
 
 /* getUrlParameter returns parameters included in the url. 
    e.g. in case of index.html?css=first.css, getUrlParameter('css') would return 'first.css'.
@@ -33,6 +34,7 @@ function generateExpression(){
 		buffer = buffer + oper[Math.floor(Math.random() * oper.length)];
 	}
 	buffer = buffer + Math.floor(Math.random() * 200) + 1  ; 
+	questionLog.push({date: new Date(), question: buffer});
 	return buffer;
 }
 
@@ -187,6 +189,9 @@ $(document).ready(function() {
 	$('#buttonmr').css('visibility','hidden');
 	$('#buttonans').css('visibility','hidden');
 	$('#buttonlnbase').hide();
+	$("#endbutton").hide();
+	$("#nextexpressionbutton").hide();
+	$("#beginbutton").show();
 
 	// Event handling for buttons
 	$('#buttonone').click(function(event) {
@@ -319,6 +324,11 @@ $(document).ready(function() {
 		endTime = null;
 		storage = [];
 		backspaceUsage = [];
+		$("#endbutton").show();
+		$("#nextexpressionbutton").show();
+		$("#beginbutton").hide();
+		$('#expression').empty(); 
+		$('#expression').append(generateExpression()); 
 	});
 
 	/* Clicking on End Survey displays a message, stops the timer and logs data */
@@ -327,15 +337,18 @@ $(document).ready(function() {
 		alert("Thanks for your contribution");
 		console.log(storage); 
 		console.log(backspaceUsage); 
+		console.log(questionLog); 
 		console.log(endTime-startTime + " ms"); 
+		$("#endbutton").hide();
+		$("#nextexpressionbutton").hide();
+		$("#beginbutton").show();
 	});
 
 	/*  Gets expressions for the survey */
 	$('#nextexpressionbutton').click(function(event) {
 		$('#expression').empty(); 
-		$('#expression').append(generateExpression()); 
-		alert(generateExpression());
-	});
+		$('#expression').append(generateExpression());
+	}); 
 
 	// Stuff for performance analysis
 	$( '#calculator' ).mousedown(function( event ) {
