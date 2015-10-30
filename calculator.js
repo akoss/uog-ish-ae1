@@ -6,6 +6,7 @@ var endTime = null;
 var storage = [];
 var backspaceUsage = [];
 var questionLog = [];
+var questionno = 0;
 
 /* getUrlParameter returns parameters included in the url. 
    e.g. in case of index.html?css=first.css, getUrlParameter('css') would return 'first.css'.
@@ -26,14 +27,14 @@ var getUrlParameter = function getUrlParameter(sParam) {
 };
 
 function generateExpression(){
-	var numberOfParts = Math.floor(Math.random() * 1) + 1  ;
+	var numberOfParts = 1  ;
 	var oper = ["^2","^3","×","÷","+","-","!+","^(1/2)*","^(-1)+","*sin(π)*","+log(2,2)-"];
 	var buffer = ""; 
 	for(i=0; i<=numberOfParts; i++){
-		buffer = buffer + Math.floor(Math.random() * 200) + 1  ; 
+		buffer = buffer + Math.floor(Math.random() * 100) + 1  ; 
 		buffer = buffer + oper[Math.floor(Math.random() * oper.length)];
 	}
-	buffer = buffer + Math.floor(Math.random() * 200) + 1  ; 
+	buffer = buffer + Math.floor(Math.random() * 100) + 1  ; 
 	questionLog.push({date: new Date(), question: buffer});
 	return buffer;
 }
@@ -173,6 +174,7 @@ function resetLog(){
 	$('#buttonlnbase').hide();
 }
 
+// Initial setup on load
 $(document).ready(function() {
 
 	// Selecting the correct stylesheet based on the css url parameter
@@ -330,6 +332,9 @@ $(document).ready(function() {
 		$("#beginbutton").hide();
 		$('#expression').empty(); 
 		$('#expression').append(generateExpression());
+		$('#questionno').empty();
+		questionno++; 
+		$('#questionno').append("<br/>Question no." + questionno + "<br/><br/>");
 		// New test -- emptying and hiding old results
 		$("#svgcontainer").empty();
 		$("#svgcontainer").hide();
@@ -337,6 +342,7 @@ $(document).ready(function() {
 
 	/* Clicking on End Survey displays a message, stops the timer and logs data */
 	$('#endbutton').click(function(event) {
+		// Saving end time
 		endTime = new Date(); 
 		alert("Thanks for your contribution");
 		console.log(storage); 
@@ -349,14 +355,13 @@ $(document).ready(function() {
 		// Show test results
 		$("#svgcontainer").show();
 
+		// Gathering clicks
 		var clicks = [];
 		for(each in storage){
 			clicks.push({x:storage[each]["x"],y:storage[each]["y"]});
 		}
 
-		//clicks = [{x:"20",y:"20"},{x:"50",y:"50"},{x:"100",y:"100"},{x:"200",y:"200"}]
-
-		console.log(clicks);
+		// Creating SVGs for clicks
 
 		var svgContainer = d3.select("#svgcontainer").insert("svg", ":first-child")
 		                                    .attr("width", $("#calculator").width())
@@ -370,9 +375,20 @@ $(document).ready(function() {
 		var circleAttributes = circles
 		                       .attr("cx", function (d) { return d["x"]; })
 		                       .attr("cy", function (d) { return d["y"]; })
-		                       .attr("r", 20 );
+		                       .attr("r", 10 )
+		                       .attr("fill","red");
 
+		// Hiding current question 
+		$("#expression").empty();
+		var buffer = "";
+		// Displaying Delete button usage
+		for(each in backspaceUsage){
+			buffer = buffer + "<br/> - " + backspaceUsage[each]["string"] ;
+		}
+		$("#expression").append("<br/><b>Delete Button Usage: " + backspaceUsage.length + " times</b><br/>" + buffer);
 
+		// Reseting question number
+		questionno = 0;
 
 	});
 
@@ -380,28 +396,31 @@ $(document).ready(function() {
 	$('#nextexpressionbutton').click(function(event) {
 		$('#expression').empty(); 
 		$('#expression').append(generateExpression());
+		$('#questionno').empty();
+		// New question - so we increment questionno
+		questionno++; 
+		// And we also need to display it
+		$('#questionno').append("<br/>Question no." + questionno + "<br/><br/>");
 	}); 
 
 	// Stuff for performance analysis
+
+	// Logging mousedown
 	$( '#calculator' ).mousedown(function( event ) {
-		   var parentOffset = $(this).parent().offset(); 
-   			//or $(this).offset(); if you really just want the current element's offset
-   			var relX = event.pageX - parentOffset.left;
-   			var relY = event.pageY - parentOffset.top;
-
-
-	  		console.log( "x=" + relX + ";y=" + relY );
-	  		storage.push({date: new Date(), event:"mousedown", x:relX, y:relY});
+		// This is from StackOverflow. 
+		// We calculate the location of the cursor on the calculator
+		var parentOffset = $(this).parent().offset(); 
+		var relX = event.pageX - parentOffset.left;
+		var relY = event.pageY - parentOffset.top;
+  		storage.push({date: new Date(), event:"mousedown", x:relX, y:relY});
 	});
-	$( '#calculator' ).mouseup(function( event ) {
-		   var parentOffset = $(this).parent().offset(); 
-   			//or $(this).offset(); if you really just want the current element's offset
-   			var relX = event.pageX - parentOffset.left;
-   			var relY = event.pageY - parentOffset.top;
 
-   			console.log(parentOffset.left + " --- " + parentOffset.top);
-	  		console.log( "x=" + relX + ";y=" + relY );
-	  		storage.push({date: new Date(), event:"mouseup", x:relX, y:relY});
+	// Logging mouseup
+	$( '#calculator' ).mouseup(function( event ) {
+		var parentOffset = $(this).parent().offset(); 
+		var relX = event.pageX - parentOffset.left;
+		var relY = event.pageY - parentOffset.top;
+  		storage.push({date: new Date(), event:"mouseup", x:relX, y:relY});
 	});
 
 });
