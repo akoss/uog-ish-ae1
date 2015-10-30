@@ -43,6 +43,13 @@ html {
 	width: 100%;
 }
 
+.svgcontainer {
+	position: absolute;
+	z-index: 999;
+	height: 660px;
+	width: 662px;
+}
+
 .calculator {
 	width: 662px;
 	height: 660px;

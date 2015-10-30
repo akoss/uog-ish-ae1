@@ -14,6 +14,34 @@ html {
 	align-items: center;
 }
 
+.beginbutton {
+	width: 150px;
+	height: 50px; 
+	font: 15px;
+}
+
+.survey-instructions {
+	padding-top: 50px;
+	width: 300px;
+
+	float: left;
+}
+
+.separator {
+	width: 50px;
+}
+
+.main-table {
+	width: 100%;
+}
+
+.svgcontainer {
+	position: absolute;
+	z-index: 999;
+	height: 460px;
+	width: 662px;
+}
+
 .calculator {
 	width: 662px;
 	height: 460px;

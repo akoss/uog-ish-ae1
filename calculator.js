@@ -192,6 +192,7 @@ $(document).ready(function() {
 	$("#endbutton").hide();
 	$("#nextexpressionbutton").hide();
 	$("#beginbutton").show();
+	$("#svgcontainer").hide();
 
 	// Event handling for buttons
 	$('#buttonone').click(function(event) {
@@ -328,7 +329,10 @@ $(document).ready(function() {
 		$("#nextexpressionbutton").show();
 		$("#beginbutton").hide();
 		$('#expression').empty(); 
-		$('#expression').append(generateExpression()); 
+		$('#expression').append(generateExpression());
+		// New test -- emptying and hiding old results
+		$("#svgcontainer").empty();
+		$("#svgcontainer").hide();
 	});
 
 	/* Clicking on End Survey displays a message, stops the timer and logs data */
@@ -342,6 +346,34 @@ $(document).ready(function() {
 		$("#endbutton").hide();
 		$("#nextexpressionbutton").hide();
 		$("#beginbutton").show();
+		// Show test results
+		$("#svgcontainer").show();
+
+		var clicks = [];
+		for(each in storage){
+			clicks.push({x:storage[each]["x"],y:storage[each]["y"]});
+		}
+
+		//clicks = [{x:"20",y:"20"},{x:"50",y:"50"},{x:"100",y:"100"},{x:"200",y:"200"}]
+
+		console.log(clicks);
+
+		var svgContainer = d3.select("#svgcontainer").insert("svg", ":first-child")
+		                                    .attr("width", $("#calculator").width())
+		                                    .attr("height", $("#calculator").height());
+
+		var circles = svgContainer.selectAll("circle")
+		                          .data(clicks)
+		                          .enter()
+		                          .append("circle");
+
+		var circleAttributes = circles
+		                       .attr("cx", function (d) { return d["x"]; })
+		                       .attr("cy", function (d) { return d["y"]; })
+		                       .attr("r", 20 );
+
+
+
 	});
 
 	/*  Gets expressions for the survey */
@@ -367,7 +399,7 @@ $(document).ready(function() {
    			var relX = event.pageX - parentOffset.left;
    			var relY = event.pageY - parentOffset.top;
 
-
+   			console.log(parentOffset.left + " --- " + parentOffset.top);
 	  		console.log( "x=" + relX + ";y=" + relY );
 	  		storage.push({date: new Date(), event:"mouseup", x:relX, y:relY});
 	});
