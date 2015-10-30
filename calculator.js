@@ -1,8 +1,14 @@
 var mem = 0; 
 var ans = 0;
 var baseDate = 0;
+var startTime = null;
+var endTime = null;
+var storage = [];
+var backspaceUsage = [];
 
-/* This is from http://stackoverflow.com/questions/19491336/get-url-parameter-jquery */ 
+/* getUrlParameter returns parameters included in the url. 
+   e.g. in case of index.html?css=first.css, getUrlParameter('css') would return 'first.css'.
+   This is from http://stackoverflow.com/questions/19491336/get-url-parameter-jquery */ 
 var getUrlParameter = function getUrlParameter(sParam) {
     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
         sURLVariables = sPageURL.split('&'),
@@ -18,10 +24,12 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
 };
 
+/* This function returns the content of the calculator's memory */
 function memread(){
 	return mem; 
 }
 
+/* This function clears the calculator's memory */
 function memclear(){
 	mem = 0; 
 	$('#buttonmclear').css('visibility','hidden');
@@ -29,6 +37,7 @@ function memclear(){
 	return mem;
 }
 
+/* This function adds 'a' to the calculator's memory content */
 function memplus(a){
 	mem = mem+a; 
 	$('#buttonmclear').css('visibility','visible');
@@ -36,10 +45,13 @@ function memplus(a){
 	return mem+a; 
 }
 
+
+/* This function returns a boolean value whether the content in defaultResult currently represents the results for the equation in defaultScreen. */
 function isResultFresh(){
 	return $('#defaultResult').hasClass('fresh');
 }
 
+/* This function sets looks of defaultScreen and defaultResult based on 'a'.*/
 function resultFresh(a){
 	if(a){
 		$('#defaultScreen').removeClass('fresh');
@@ -54,16 +66,20 @@ function resultFresh(a){
 	}
 }
 
+/* This function clears the current equation. */
 function clear(){
 	resultFresh(0); 
 	resetLog();
 	$('#defaultScreen').empty();
 }
 
+/* This function appends string to the currently displayed equation in defaultScreen. */
 function appendToDisplay(string) {
 	if(isResultFresh()){
+		// If the user recently pressed '=', we can get rid of the old equation.
 		$('#defaultScreen').empty();	
 	}
+	// Since we've edited the equation, the results are no longer fresh. 
 	resultFresh(0); 
 	$('#defaultScreen').append(string);
 }
@@ -72,53 +88,70 @@ function appendOperatorToDisplay(string) {
 	appendToDisplay(string);
 }
 
+/* This result gets rid of the previous result and copies string to defaultResult. */
 function publishResult(string) {
 	$('#defaultResult').empty();
 	$('#defaultResult').append(string);
 }
 
+/*This is what happens when the user clicks on the delete button */
 function backspaceButton() {
+	// Results are no longer fresh
 	if(isResultFresh()){
 		resultFresh(0);
 	}
+	// We delete a single character
 	var str = $('#defaultScreen').html();
 	$('#defaultScreen').empty();
 	$('#defaultScreen').append(str.substring(0, str.length - 1));
+	backspaceUsage.push({date: new Date(),string: str}); 
 }
 
+/* When the user clicks on '=', we calculate the results and publish them.*/
 function eqclicked(){
 	result = equals($('#defaultScreen').html());
 	publishResult(result); 
+	// If there was an error, we leave the current equation in place for further editing
 	if(result != "Error"){
 		resultFresh(true); 
 	}
 }
 
+/* This function removes certain characters and replaces them with those accepted by math.js */
 function parseString(what){
+	// Pi
 	what = what.replace("π" ,"pi");
+	// Division
 	what = what.replace("÷" ,"/");
+	// Multiplication
 	what = what.replace("×" ,"*");
+	// Squared
 	what = what.replace("²" ,"^2"); 
+	// On the third
 	what = what.replace("³" ,"^3"); 
+	// ANSWER button
 	what = what.replace("ANS" ,ans); 
 	return what;
 }
 
+/* This functon calculates the answer for what using math.js. */
 function equals(what){
 	try {
-		//console.log(what);
-		//console.log(parseString(what));
 		ans = math.eval(parseString(what));
+		// We only make the ANS button visible if we have a result
 		$('#buttonans').css('visibility','visible');
 		resetLog();
 		return ans;
 	}
 	catch(e) {
+		// In case of an exception we hide the ANS button 
 		$('#buttonans').css('visibility','hidden');
 		return "Error";
 	}
 }
 
+/* This function resets the state of the buttons regarding Logarithm.
+   See further down why this is neccessary */
 function resetLog(){
 	$('#buttonparleft').css('visibility','visible');
 	$('#buttonlnbase').css('visibility','visible');
@@ -127,20 +160,23 @@ function resetLog(){
 }
 
 $(document).ready(function() {
+
+	// Selecting the correct stylesheet based on the css url parameter
 	var stylesheetName = getUrlParameter('css');
 	if(!stylesheetName){
-		stylesheetName = "calculator.css";
+		// Using calculator.css if no parameter was given 
+		stylesheetName = "calculator3.css";
 	}
 	$("head").append($("<link rel='stylesheet' type='text/css' href='"+stylesheetName+"'>")); 
 	$("head").append($("<title>Calculator - Using " + stylesheetName + " - Akos Szente - 2094613</title>")); 
 
-
+	// Setting up button layout on load
 	$('#buttonmclear').css('visibility','hidden');
 	$('#buttonmr').css('visibility','hidden');
 	$('#buttonans').css('visibility','hidden');
 	$('#buttonlnbase').hide();
 
-
+	// Event handling for buttons
 	$('#buttonone').click(function(event) {
   		appendToDisplay("1");
 	});
@@ -211,6 +247,7 @@ $(document).ready(function() {
 		clear();
 	});
 	$('#buttonmplus').click(function(event) {
+		// If results have not been counted for the current equation yet, we need to do that first 
 		if(!isResultFresh()){
 			eqclicked(); 
 		}
@@ -243,6 +280,7 @@ $(document).ready(function() {
 
 	$('#buttonparright').click(function(event) {
 		appendToDisplay(")");
+		// Once the user closes the log('s parenthesis, we can return the log buttons to the original state
 		resetLog();
 	});
 	$('#buttonreciprocal').click(function(event) {
@@ -250,16 +288,37 @@ $(document).ready(function() {
 	});
 	$('#buttonln').click(function(event) {
 		appendToDisplay("log(");
+		// Replacing  log( button with a button for the base of the logarithm 
 		$('#buttonln').hide();
 		$('#buttonlnbase').show();
+		// Hiding left parenthesis so that the user won't write a complex expression for the log's base
 		$('#buttonparleft').css('visibility','hidden');
 		$('#buttonlnbase').css('visibility','visible');
 	});
 	$('#buttonlnbase').click(function(event) {
+		// Form for this: log(2,2)=1
 		appendToDisplay(",");
 		$('#buttonlnbase').css('visibility','hidden');
 	});
 
+	/* Clicking on Begin Survey starts a timer and empties survey data arrays */
+	$('#beginbutton').click(function(event) {
+		startTime = new Date(); 
+		endTime = null;
+		storage = [];
+		backspaceUsage = [];
+	});
+
+	/* Clicking on End Survey displays a message, stops the timer and logs data */
+	$('#endbutton').click(function(event) {
+		endTime = new Date(); 
+		alert("Thanks for your contribution");
+		console.log(storage); 
+		console.log(backspaceUsage); 
+		console.log(endTime-startTime); 
+	});
+
+	// Stuff for performance analysis
 	$( '#calculator' ).click(function( event ) {
 		   var parentOffset = $(this).parent().offset(); 
    			//or $(this).offset(); if you really just want the current element's offset
@@ -268,6 +327,7 @@ $(document).ready(function() {
 
 
 	  		console.log( "x=" + relX + ";y=" + relY );
+	  		storage.push({date: new Date(), x:relX, y:relY});
 	});
 
 

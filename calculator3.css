@@ -37,13 +37,13 @@ html {
 
 .calculator {
 	width: 662px;
-	height: 460px;
+	height: 660px;
 	
 	margin-left: auto;
 	margin-right: auto;
 	padding: 15px 15px 15px 15px;
 	
-	background: linear-gradient(#699A33, #609025);
+	background: #434230;
 	box-shadow: 0px 0px rgba(0,0,0,1), 0px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
@@ -52,54 +52,67 @@ html {
 }
 
 .screen {
-	height: 80px;
+	height: 120px;
 	width: 100%;
 	
-	padding: 0, 10px;
+	padding: 50px, 10px;
 	
-	background: rgba(0, 0, 0, 0.5);
+	
+		background: radial-gradient(#FFEA87, #D4D46A);
 	/*border-radius: 3px; */
 	/*box-shadow: inset 0px 4px rgba(0, 0, 0, 0.2);*/
 	
-	font-size: 30px;
+	font-size: 55px;
 	word-break: break-all;
-	line-height: 40px;
-	color: white;
+	line-height: 60px;
 	text-align: right;
 	letter-spacing: 2px;
 	font-family: monospace; 
+	color: black;
 }
 
 .result {
     border-top: 1px solid #699A33;
-	height: 40px;
+	height: 60px;
 	width: 100%;
 	padding: 0, 10px;
 	background: rgba(0, 0, 0, 0.7);
 	
 	font-family: monospace; 
-	font-size: 25px;
-	line-height: 40px;
+	font-size: 50px;
+	line-height: 60px;
 	text-align: right;
 	letter-spacing: 1.5px;
 }
 
-.fresh {
+.screen.fresh {
+	color: black;
+}
+
+.screen.notfresh {
+	color: rgba(0,0,0,0.6);
+}
+
+.result.fresh {
 	color: white;
 }
 
-.notfresh {
-	color: rgba(255,255,255,0.7);
+.result.notfresh {
+	color: rgba(255,255,255,0.6);
 }
 
 .button.operator {
 	background: #457313;
 	color: white;
+	font: 40px Helvetica, sans-serif;
+	line-height: 68px;
 }
 
 .button.equal {
-	background: #284D00;
+	background: radial-gradient(#FF8F2F, #FF7600);
+	 
 	color: white;
+	width: 118px;
 }
 
 .button.function {
@@ -108,13 +121,18 @@ html {
 }
 
 .button.clear {
-	background: #284D00;
+
+	background: radial-gradient(#FF8F2F, #FF7600);
 	color: white;
 }
 
 .button.memory {
 	background: #284D00;
 	color: white;
+}
+
+.button.dot {
+	width: 50px;
 }
 
 .button.backspace {
@@ -126,12 +144,18 @@ html {
 	margin-right: 0;
 }
 
+.button.firstrow {
+	height: 95px;
+	line-height: 140px;
+	font-weight: normal;
+}
+
 .button	  {
 	float: left;
 	position: relative;
 
 	display:inline;
-	font: 23px Helvetica, sans-serif;
+	font: 28px Helvetica, sans-serif;
 	font-weight: lighter;
 
 	/* 
@@ -146,18 +170,16 @@ html {
 	-ms-user-select: none;
 	user-select: none;
 
-	
-	
 	width: 84px;
-	height: 53px;
+	height: 73px;
 	
-	/*border-radius: 3px;*/
-	/*box-shadow: 0px 4px rgba(0, 0, 0, 0.2);*/
+	border-radius: 6px;
+	box-shadow: 0px 4px rgba(0, 0, 0, 0.8);
 	
 	margin: 0 7px 8px 0;
 	
-	background: #C2E79A;
-	line-height: 53px;
+	background: #E2F7AA;
+	line-height: 73px;
 	text-align: center;
 	
 	transition: all 0.1s ease;
@@ -165,22 +187,35 @@ html {
 	cursor: default;
 }
 
-/* The idea of using box-shadow for depress imitation is from StackOverflow, but I can no longer find the link. */ 
+.button :active {
+	background: #72A040;
+	box-shadow: 0px 6px #FFFFFF;
+}
 
 .keypad :hover {
 	background: #92C060;
-	box-shadow: 0px 4px #284D00;
+	box-shadow: 0px 6px #284D00;
 }
 
-.keypad .equal:hover {
-	background: #92C060;
-	box-shadow: 0px 4px #717a33;
+.keypad .equal:hover, .keypad .clear:hover{
+	
+	background: radial-gradient(#CC4400, #FF7600);
 	color: #ffffff;
 }
 
-
-.keypad :active {
-	background: #92C060;
-	box-shadow: 0px 4px #284D00;
+.keypad .equal:active, .keypad .clear:active {
+	
+	background: radial-gradient(#FF8F2F, #A94E00);
+	color: #ffffff;
 }
+
+.keypad .function:active, .keypad .operator:active, .keypad .memory:active, .keypad .backspace:active {
+	background: rgba(0, 0, 0, 0.8);
+	color: #aaaaaa;
+}
+
+.keypad .function:hover, .keypad .operator:hover, .keypad .memory:hover, .keypad .backspace:hover {
+	background: #000000;
+}
+
 

@@ -14,27 +14,6 @@ html {
 	align-items: center;
 }
 
-.beginbutton {
-	width: 150px;
-	height: 50px; 
-	font: 15px;
-}
-
-.survey-instructions {
-	padding-top: 50px;
-	width: 300px;
-
-	float: left;
-}
-
-.separator {
-	width: 50px;
-}
-
-.main-table {
-	width: 100%;
-}
-
 .calculator {
 	width: 662px;
 	height: 460px;
@@ -43,21 +22,22 @@ html {
 	margin-right: auto;
 	padding: 15px 15px 15px 15px;
 	
-	background: linear-gradient(#699A33, #609025);
+	background: #6EB7FF;
 	box-shadow: 0px 0px rgba(0,0,0,1), 0px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 .top {
-	margin-bottom: 15px;
+	margin-bottom: 0;
 }
 
 .screen {
+	z-index: 10;
 	height: 80px;
 	width: 100%;
 	
 	padding: 0, 10px;
 	
-	background: rgba(0, 0, 0, 0.5);
+	background: #6EB7FF;
 	/*border-radius: 3px; */
 	/*box-shadow: inset 0px 4px rgba(0, 0, 0, 0.2);*/
 	
@@ -71,11 +51,11 @@ html {
 }
 
 .result {
-    border-top: 1px solid #699A33;
+    border-top: 0;
 	height: 40px;
 	width: 100%;
 	padding: 0, 10px;
-	background: rgba(0, 0, 0, 0.7);
+	background: #00E68A;
 	
 	font-family: monospace; 
 	font-size: 25px;
@@ -93,32 +73,32 @@ html {
 }
 
 .button.operator {
-	background: #457313;
+	background: #777777;
 	color: white;
 }
 
 .button.equal {
-	background: #284D00;
+	background: #444444;
 	color: white;
 }
 
 .button.function {
-	background: #457313;
+	background: #777777;
 	color: white;
 }
 
 .button.clear {
-	background: #284D00;
+	background: #444444;
 	color: white;
 }
 
 .button.memory {
-	background: #284D00;
+	background: #444444;
 	color: white;
 }
 
 .button.backspace {
-	background: #284D00;
+	background: #444444;
 	color: white;
 }
 
@@ -145,42 +125,28 @@ html {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-
 	
-	
-	width: 84px;
-	height: 53px;
+	width: 90px;
+	height: 60px;
 	
 	/*border-radius: 3px;*/
 	/*box-shadow: 0px 4px rgba(0, 0, 0, 0.2);*/
 	
-	margin: 0 7px 8px 0;
+	margin: 0 0 0 0;
 	
-	background: #C2E79A;
-	line-height: 53px;
+	background: #444444;
+	line-height: 60px;
 	text-align: center;
+	color: white;
 	
 	transition: all 0.1s ease;
 
 	cursor: default;
 }
 
-/* The idea of using box-shadow for depress imitation is from StackOverflow, but I can no longer find the link. */ 
-
-.keypad :hover {
-	background: #92C060;
-	box-shadow: 0px 4px #284D00;
-}
-
-.keypad .equal:hover {
-	background: #92C060;
-	box-shadow: 0px 4px #717a33;
-	color: #ffffff;
-}
-
-
 .keypad :active {
-	background: #92C060;
-	box-shadow: 0px 4px #284D00;
+	background: #4180FF;
 }
+
+/* The idea for this is from StackOverflow, but I can no longer find the link. */
 
