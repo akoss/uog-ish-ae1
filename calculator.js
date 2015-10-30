@@ -24,6 +24,18 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
 };
 
+function generateExpression(){
+	var numberOfParts = Math.floor(Math.random() * 1) + 1  ;
+	var oper = ["^2","^3","×","÷","+","-","!+","^(1/2)*","^(-1)+","*sin(π)*","+log(2,2)-"];
+	var buffer = ""; 
+	for(i=0; i<=numberOfParts; i++){
+		buffer = buffer + Math.floor(Math.random() * 200) + 1  ; 
+		buffer = buffer + oper[Math.floor(Math.random() * oper.length)];
+	}
+	buffer = buffer + Math.floor(Math.random() * 200) + 1  ; 
+	return buffer;
+}
+
 /* This function returns the content of the calculator's memory */
 function memread(){
 	return mem; 
@@ -315,11 +327,18 @@ $(document).ready(function() {
 		alert("Thanks for your contribution");
 		console.log(storage); 
 		console.log(backspaceUsage); 
-		console.log(endTime-startTime); 
+		console.log(endTime-startTime + " ms"); 
+	});
+
+	/*  Gets expressions for the survey */
+	$('#nextexpressionbutton').click(function(event) {
+		$('#expression').empty(); 
+		$('#expression').append(generateExpression()); 
+		alert(generateExpression());
 	});
 
 	// Stuff for performance analysis
-	$( '#calculator' ).click(function( event ) {
+	$( '#calculator' ).mousedown(function( event ) {
 		   var parentOffset = $(this).parent().offset(); 
    			//or $(this).offset(); if you really just want the current element's offset
    			var relX = event.pageX - parentOffset.left;
@@ -327,8 +346,17 @@ $(document).ready(function() {
 
 
 	  		console.log( "x=" + relX + ";y=" + relY );
-	  		storage.push({date: new Date(), x:relX, y:relY});
+	  		storage.push({date: new Date(), event:"mousedown", x:relX, y:relY});
 	});
+	$( '#calculator' ).mouseup(function( event ) {
+		   var parentOffset = $(this).parent().offset(); 
+   			//or $(this).offset(); if you really just want the current element's offset
+   			var relX = event.pageX - parentOffset.left;
+   			var relY = event.pageY - parentOffset.top;
 
+
+	  		console.log( "x=" + relX + ";y=" + relY );
+	  		storage.push({date: new Date(), event:"mouseup", x:relX, y:relY});
+	});
 
 });

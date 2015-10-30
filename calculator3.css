@@ -14,6 +14,14 @@ html {
 	align-items: center;
 }
 
+.expression {
+	font-size: 20px;
+	word-break: break-all;
+	letter-spacing: 2px;
+	font-family: monospace; 
+	color: black;
+}
+
 .beginbutton {
 	width: 150px;
 	height: 50px; 
@@ -44,7 +52,7 @@ html {
 	padding: 15px 15px 15px 15px;
 	
 	background: #434230;
-	box-shadow: 0px 0px rgba(0,0,0,1), 0px 5px 5px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 rgba(0,0,0,1), 0 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 .top {
@@ -174,11 +182,11 @@ html {
 	height: 73px;
 	
 	border-radius: 6px;
-	box-shadow: 0px 4px rgba(0, 0, 0, 0.8);
+	box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.6);
 	
 	margin: 0 7px 8px 0;
 	
-	background: #E2F7AA;
+	background: radial-gradient(#92C060, #92C060);
 	line-height: 73px;
 	text-align: center;
 	
@@ -187,14 +195,14 @@ html {
 	cursor: default;
 }
 
-.button :active {
-	background: #72A040;
-	box-shadow: 0px 6px #FFFFFF;
+.keypad .number:hover {
+	background: radial-gradient(#72A040, #529030);
+	box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.6);
 }
 
-.keypad :hover {
-	background: #92C060;
-	box-shadow: 0px 6px #284D00;
+.keypad .number:active {
+	background: radial-gradient(#529030, #327010);
+	box-shadow: 0 2px #000000;
 }
 
 .keypad .equal:hover, .keypad .clear:hover{
@@ -207,15 +215,15 @@ html {
 	
 	background: radial-gradient(#FF8F2F, #A94E00);
 	color: #ffffff;
-}
-
-.keypad .function:active, .keypad .operator:active, .keypad .memory:active, .keypad .backspace:active {
-	background: rgba(0, 0, 0, 0.8);
-	color: #aaaaaa;
+	box-shadow: 0 2px #000000;
 }
 
 .keypad .function:hover, .keypad .operator:hover, .keypad .memory:hover, .keypad .backspace:hover {
-	background: #000000;
+	background: radial-gradient(#457313, #255303);
 }
 
-
+.keypad .function:active, .keypad .operator:active, .keypad .memory:active, .keypad .backspace:active {
+	background: radial-gradient(#255303, #153300);
+	color: #aaaaaa;
+	box-shadow: 0 2px #000000;
+}

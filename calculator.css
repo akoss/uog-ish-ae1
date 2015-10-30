@@ -44,7 +44,7 @@ html {
 	padding: 15px 15px 15px 15px;
 	
 	background: linear-gradient(#699A33, #609025);
-	box-shadow: 0px 0px rgba(0,0,0,1), 0px 5px 5px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 rgba(0,0,0,1), 0 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 .top {
@@ -135,8 +135,7 @@ html {
 	font-weight: lighter;
 
 	/* 
-	 * The following lines are from StackOvervflow
-	 * http://stackoverflow.com/questions/3779534/how-to-disable-text-selection-with-css-or-js
+	 * The following lines are from StackOvervflow - http://stackoverflow.com/questions/3779534/how-to-disable-text-selection-with-css-or-js
 	 * There doesn't seem to be an elegant cross-browser way to disable text selection. 
 	 */
 	 -webkit-touch-callout: none;
@@ -169,18 +168,18 @@ html {
 
 .keypad :hover {
 	background: #92C060;
-	box-shadow: 0px 4px #284D00;
+	box-shadow: 0 4px #284D00;
 }
 
 .keypad .equal:hover {
 	background: #92C060;
-	box-shadow: 0px 4px #717a33;
+	box-shadow: 0 4px #717a33;
 	color: #ffffff;
 }
 
 
 .keypad :active {
 	background: #92C060;
-	box-shadow: 0px 4px #284D00;
+	box-shadow: 0 4px #284D00;
 }
 
